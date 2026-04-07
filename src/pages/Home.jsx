@@ -64,3 +64,13 @@ import AlumniGallery from "../components/home/AlumniGallery";
   <Testimonials />
   <AlumniGallery />  // <-- ajouté ici
 </div>
+import Footer from "../components/home/Footer";
+            <div>
+  <Hero />
+  <Programs />
+  <WhyUs />
+  <QuickApply />
+  <Testimonials />
+  <AlumniGallery />
+  <Footer />  // <-- ajouté ici
+</div>
