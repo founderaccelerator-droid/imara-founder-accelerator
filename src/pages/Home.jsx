@@ -47,3 +47,11 @@ import QuickApply from "../components/home/QuickApply";
   <WhyUs />
   <QuickApply />  // <-- ajouté ici
 </div>
+import Testimonials from "../components/home/Testimonials";
+        <div>
+  <Hero />
+  <Programs />
+  <WhyUs />
+  <QuickApply />
+  <Testimonials />  // <-- ajouté ici
+</div>
