@@ -55,3 +55,12 @@ import Testimonials from "../components/home/Testimonials";
   <QuickApply />
   <Testimonials />  // <-- ajouté ici
 </div>
+import AlumniGallery from "../components/home/AlumniGallery";
+          <div>
+  <Hero />
+  <Programs />
+  <WhyUs />
+  <QuickApply />
+  <Testimonials />
+  <AlumniGallery />  // <-- ajouté ici
+</div>
