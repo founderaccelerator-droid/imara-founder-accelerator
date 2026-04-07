@@ -40,3 +40,10 @@ const Home = () => {
 };
 
 export default Home;
+import QuickApply from "../components/home/QuickApply";
+      <div>
+  <Hero />
+  <Programs />
+  <WhyUs />
+  <QuickApply />  // <-- ajouté ici
+</div>
