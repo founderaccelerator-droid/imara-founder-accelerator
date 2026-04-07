@@ -1,2 +1,9 @@
-# imara-founder-accelerator
-Plateforme et ressources pour Imara Founder Accelerator : outils, programmes et initiatives pour accompagner les entrepreneurs africains vers le succès.
+Founder Accelerator
+Plateforme web professionnelle pour incubateur / accélérateur. 
+Rôles : Participant, Mentor, Investisseur, Admin.
+Fonctionnalités :
+- Candidature modulable participant & mentor
+- Dashboard complet
+- Modules de formation
+- Alumni & Témoignages
+- Slider médias, modals, notifications
