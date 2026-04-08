@@ -96,3 +96,49 @@ export default DashboardParticipant;
     </ul>
   </div>
 )}
+import { useEffect, useState } from "react";
+
+// Exemple simple de notifications mock
+const exampleNotifications = [
+  { id: 1, message: "Votre module 2 a été validé", read: false },
+  { id: 2, message: "Nouveau feedback mentor disponible", read: false },
+];
+
+const [notifications, setNotifications] = useState(exampleNotifications);
+
+// Marquer notification comme lue
+const markAsRead = (id) => {
+  setNotifications(
+    notifications.map((n) => n.id === id ? { ...n, read: true } : n)
+  );
+};
+<div className="mb-6">
+  <h4 className="text-xl font-semibold mb-2">Notifications</h4>
+  {notifications.length === 0 ? (
+    <p>Aucune notification.</p>
+  ) : (
+    <ul className="list-disc pl-5">
+      {notifications.map((n) => (
+        <li
+          key={n.id}
+          className={`mb-1 ${n.read ? "text-gray-400" : "text-black font-medium"}`}
+        >
+          {n.message}
+          {!n.read && (
+            <button
+              className="ml-2 text-blue-600 underline"
+              onClick={() => markAsRead(n.id)}
+            >
+              Marquer comme lu
+            </button>
+          )}
+        </li>
+      ))}
+    </ul>
+  )}
+</div>
+# notify_participant.rb
+def send_feedback_notification(participant, message)
+  Notification.create(user: participant, message: message)
+  ParticipantMailer.with(participant: participant, message: message).feedback_email.deliver_later
+end
