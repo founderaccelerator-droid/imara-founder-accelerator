@@ -78,3 +78,23 @@ const ParticipantForm = () => {
 };
 
 export default ParticipantForm;
+const handleSubmit = async () => {
+  // Vérifier paiement et consentement RGPD
+  if (!consentRGPD || !paymentConfirmed) {
+    alert("Veuillez confirmer paiement et RGPD");
+    return;
+  }
+
+  // Soumettre la candidature
+  await submitCandidature({
+    program,
+    projectInfo,
+    team,
+    documents,
+    paymentInfo,
+    status: "submitted", // verrouille la candidature
+  });
+
+  // Redirection vers Dashboard Participant
+  navigate("/dashboard-participant");
+};
