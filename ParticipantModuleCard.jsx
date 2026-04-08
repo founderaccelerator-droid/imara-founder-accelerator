@@ -54,5 +54,9 @@ const ParticipantModuleCard = ({ module }) => {
     </div>
   );
 };
-
+{isAccessible && module.mentorFeedback && (
+  <div className="mt-2 p-2 bg-yellow-100 rounded">
+    <strong>Feedback mentor :</strong> {module.mentorFeedback}
+  </div>
+)}
 export default ParticipantModuleCard;
