@@ -116,6 +116,17 @@ import ParticipantModuleCard from "./ParticipantModuleCard";
   ))}
 </div>
 import { checkModuleSchedule } from "./utils";
+// Calcul progression globale
+const totalModules = modules.length;
+const completedModules = modules.filter(m => m.progress === 100).length;
+const overallProgress = Math.round((completedModules / totalModules) * 100);
+
+<div className="mb-4">
+  <h3 className="text-lg font-semibold mb-2">Progression globale : {overallProgress}%</h3>
+  <div className="w-full bg-gray-200 rounded h-4">
+    <div className="bg-green-500 h-4 rounded" style={{ width: `${overallProgress}%` }}></div>
+  </div>
+</div>
 
 // Dans le mapping des modules
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
