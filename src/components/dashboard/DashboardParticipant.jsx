@@ -238,3 +238,12 @@ const updateProgress = (moduleId, percent) => {
     body: JSON.stringify({ progress: percent }),
   });
 };
+import ShareLink from "./ShareLink";
+
+// Dans la partie candidature sélectionnée
+{selectedCandidature && (
+  <div className="mt-4 p-2 border rounded bg-gray-50">
+    <h4 className="font-semibold mb-2">Partager votre candidature :</h4>
+    <ShareLink candidature={selectedCandidature} />
+  </div>
+)}
