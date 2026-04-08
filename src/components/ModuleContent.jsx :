@@ -1,0 +1,47 @@
+import React from "react";
+import Quiz from "./Quiz"; // Ton composant Quiz déjà existant
+
+const ModuleContent = ({ module, candidature }) => {
+  const now = new Date();
+  const start = new Date(module.start_time);
+  const end = new Date(module.end_time);
+
+  const canAccessModule = candidature.status === "selected" && now >= start && now <= end;
+
+  const limitVolume = (event) => {
+    if (event.target.volume > 0.5) event.target.volume = 0.5;
+  };
+
+  const MAX_DURATION = 10 * 60; // 10 minutes
+  const handleVideoLoaded = (event) => {
+    if (event.target.duration > MAX_DURATION) {
+      alert("La vidéo dépasse la durée maximale autorisée.");
+      event.target.currentTime = 0;
+      event.target.pause();
+    }
+  };
+
+  return canAccessModule ? (
+    <div className="mb-6 p-4 border rounded shadow">
+      <h4 className="font-semibold mb-2">{module.name}</h4>
+      <video
+        src={module.videoUrl}
+        controls
+        width="100%"
+        maxHeight="400px"
+        onVolumeChange={limitVolume}
+        onLoadedMetadata={handleVideoLoaded}
+      />
+      <Quiz moduleId={module.id} />
+      <div className="mt-2">
+        Progression : {module.progress}%
+      </div>
+    </div>
+  ) : (
+    <p className="text-red-500 font-medium mb-4">
+      Ce module sera disponible du {start.toLocaleString()} au {end.toLocaleString()}.
+    </p>
+  );
+};
+
+export default ModuleContent;
