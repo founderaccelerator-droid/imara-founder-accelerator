@@ -60,3 +60,39 @@ const DashboardParticipant = () => {
 };
 
 export default DashboardParticipant;
+{c.modules && c.modules.length > 0 && (
+  <div className="mt-4">
+    <h4 className="font-semibold mb-2">Modules</h4>
+    {c.modules.map((m, i) => (
+      <div key={i} className="mb-2">
+        <p>{m.name}</p>
+        <div className="bg-gray-200 rounded h-2 w-full">
+          <div
+            className="bg-blue-600 h-2 rounded"
+            style={{ width: `${m.progress}%` }}
+          ></div>
+        </div>
+      </div>
+    ))}
+  </div>
+)}
+{c.feedback && (
+  <div className="mt-4 p-3 bg-yellow-100 rounded">
+    <h5 className="font-semibold mb-1">Feedback Mentor</h5>
+    <p>{c.feedback}</p>
+  </div>
+)}
+{c.documents && (
+  <div className="mt-4">
+    <h4 className="font-semibold mb-2">Documents Uploadés</h4>
+    <ul className="list-disc pl-5">
+      {c.documents.map((doc, i) => (
+        <li key={i}>
+          <a href={doc.url} target="_blank" className="text-blue-600 underline">
+            {doc.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}
