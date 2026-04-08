@@ -59,7 +59,6 @@ const DashboardParticipant = () => {
   );
 };
 
-export default DashboardParticipant;
 {c.modules && c.modules.length > 0 && (
   <div className="mt-4">
     <h4 className="font-semibold mb-2">Modules</h4>
@@ -247,3 +246,9 @@ import ShareLink from "./ShareLink";
     <ShareLink candidature={selectedCandidature} />
   </div>
 )}
+import ProgramProgress from './ProgramProgress';
+<ProgramProgress modules={modules} />
+{modules.map(m => (
+  <ModuleCard key={m.id} module={m} onUpdateStatus={handleModuleUpdate} />
+))}
+export default DashboardParticipant;
