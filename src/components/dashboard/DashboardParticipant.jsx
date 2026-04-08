@@ -192,3 +192,49 @@ const openModule = (moduleId) => {
   // Redirection vers la page du module
   navigate(`/dashboard-participant/module/${moduleId}`);
 };
+# Module.rb
+class Module < ApplicationRecord
+  # Exemple d’attributs : start_time, end_time
+  # start_time et end_time = DateTime
+end
+{
+  "id": 1,
+  "name": "Module 1 - Introduction",
+  "videoUrl": "https://.../module1.mp4",
+  "quizId": 101,
+  "start_time": "2026-04-08T09:00:00Z",
+  "end_time": "2026-04-08T17:00:00Z",
+  "progress": 40
+    }
+const now = new Date();
+const start = new Date(module.start_time);
+const end = new Date(module.end_time);
+
+const canAccessModule = candidature.status === "selected" && now >= start && now <= end;
+{canAccessModule ? (
+  <div>
+    <h5>{module.name}</h5>
+    <video
+      src={module.videoUrl}
+      controls
+      width="100%"
+      maxHeight="400px"
+      onVolumeChange={(e) => limitVolume(e)}
+    />
+    <Quiz moduleId={module.id} />
+    <div className="mt-2">
+      <p>Progression : {module.progress}%</p>
+    </div>
+  </div>
+) : (
+  <p className="text-red-500 font-medium">
+    Ce module sera disponible du {start.toLocaleString()} au {end.toLocaleString()}.
+  </p>
+)}
+const updateProgress = (moduleId, percent) => {
+  fetch(`/api/modules/${moduleId}/progress`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ progress: percent }),
+  });
+};
