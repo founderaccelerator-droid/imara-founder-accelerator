@@ -115,4 +115,16 @@ import ParticipantModuleCard from "./ParticipantModuleCard";
     }} />
   ))}
 </div>
+import { checkModuleSchedule } from "./utils";
+
+// Dans le mapping des modules
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  {modules.map((module, idx) => (
+    <ParticipantModuleCard key={idx} module={{
+      ...module,
+      accessible: module.accessible && checkModuleSchedule(module),
+      participantSelected: currentUser.selected
+    }} />
+  ))}
+</div>
 export default DashboardParticipant;
