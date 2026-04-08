@@ -142,3 +142,53 @@ def send_feedback_notification(participant, message)
   Notification.create(user: participant, message: message)
   ParticipantMailer.with(participant: participant, message: message).feedback_email.deliver_later
 end
+const canAccessModules = candidature.status === "selected";
+{canAccessModules ? (
+  <div className="mt-4">
+    <h4 className="text-xl font-semibold mb-2">Modules de formation</h4>
+    {c.modules.map((m, i) => (
+      <div key={i} className="mb-4 p-3 border rounded hover:shadow">
+        <p className="font-medium">{m.name}</p>
+        <div className="bg-gray-200 rounded h-2 w-full mb-1">
+          <div
+            className="bg-blue-600 h-2 rounded"
+            style={{ width: `${m.progress}%` }}
+          ></div>
+        </div>
+        <button
+          className="mt-1 px-3 py-1 bg-green-600 text-white rounded"
+          onClick={() => openModule(m.id)}
+        >
+          Ouvrir module
+        </button>
+      </div>
+    ))}
+  </div>
+) : (
+  <p className="mt-4 text-gray-500 font-medium">
+    Vos modules seront accessibles une fois que vous serez sélectionné.
+  </p>
+)}
+const ModuleContent = ({ module, candidature }) => {
+  if (candidature.status !== "selected") {
+    return <p className="text-red-500">Vous n’avez pas encore accès à ce contenu.</p>;
+  }
+
+  return (
+    <div>
+      <h5>{module.name}</h5>
+      <video
+        src={module.videoUrl}
+        controls
+        width="100%"
+        maxHeight="400px"
+        onVolumeChange={(e) => limitVolume(e)}
+      />
+      <Quiz moduleId={module.id} />
+    </div>
+  );
+};
+const openModule = (moduleId) => {
+  // Redirection vers la page du module
+  navigate(`/dashboard-participant/module/${moduleId}`);
+};
