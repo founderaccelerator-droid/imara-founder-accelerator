@@ -114,5 +114,55 @@ const Step5Payment = ({ prevStep }) => {
     </div>
   );
 };
+<div className="p-4 border rounded mb-4">
+  <h4 className="font-semibold mb-2">Paiement mobile et preuve</h4>
+  
+  <label className="block mb-1">Numéro mobile pour paiement :</label>
+  <input
+    type="text"
+    value={mobileNumber}
+    onChange={(e) => setMobileNumber(e.target.value)}
+    placeholder="Ex : +243..."
+    required
+    className="border px-2 py-1 w-full rounded mb-2"
+  />
 
+  <label className="block mb-1">Upload preuve de paiement :</label>
+  <input
+    type="file"
+    accept=".jpg,.png,.pdf"
+    onChange={handleProofUpload}
+    required
+    className="mb-2"
+  />
+
+  <label className="block mb-1">Chiffre de vérification :</label>
+  <input
+    type="text"
+    value={verificationCode}
+    onChange={(e) => setVerificationCode(e.target.value)}
+    placeholder="Ex : 6 chiffres reçu"
+    required
+    className="border px-2 py-1 w-full rounded mb-2"
+  />
+
+  <div className="flex items-center mb-2">
+    <input
+      type="checkbox"
+      checked={agreeRGPD}
+      onChange={() => setAgreeRGPD(!agreeRGPD)}
+      required
+      className="mr-2"
+    />
+    <span>J’accepte la Politique de confidentialité et certifie l’exactitude des informations.</span>
+  </div>
+
+  <button
+    onClick={handleSubmit}
+    disabled={!agreeRGPD || !proofUploaded || !verificationCode}
+    className="bg-blue-600 text-white px-4 py-2 rounded"
+  >
+    Soumettre la candidature
+  </button>
+</div>
 export default Step5Payment;
