@@ -39,7 +39,7 @@ const Home = () => {
   );
 };
 
-export default Home;
+
 import QuickApply from "../components/home/QuickApply";
       <div>
   <Hero />
@@ -74,3 +74,4 @@ import Footer from "../components/home/Footer";
   <AlumniGallery />
   <Footer />  // <-- ajouté ici
 </div>
+ export default Home;             
