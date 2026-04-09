@@ -1,41 +1,30 @@
-import React, { useState, useEffect } from "react";
-import AlumniList from "./AlumniList";
+import React from "react";
 
-const AlumniPage = () => {
-  const [alumni, setAlumni] = useState([]);
-
-  useEffect(() => {
-    // Simuler fetch depuis API / backend
-    const fetchAlumni = async () => {
-      // Ici tu remplaceras par un appel réel API
-      const data = [
-        { name: "Alice Ndungu", program: "SeedLift", photoUrl: "/images/alice.jpg" },
-        { name: "Jean Mukasa", program: "FikraLaunch", photoUrl: "/images/jean.jpg" },
-        { name: "Fatou Diop", program: "Congo Founder Accelerator", photoUrl: "/images/fatou.jpg" },
-      ];
-      setAlumni(data);
-    };
-    fetchAlumni();
-  }, []);
-
+const AlumniList = ({ alumni }) => {
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Communauté Alumni</h1>
-      <p className="mb-6 text-gray-700">
-        Découvrez nos alumni, connectez-vous avec eux et accédez à leurs profils.
-      </p>
-      <AlumniList alumni={alumni} />
-
-      <div className="mt-6">
-        <button
-          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-          onClick={() => window.alert("Rejoindre la communauté Alumni")}
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      {alumni.map((alum, idx) => (
+        <div
+          key={idx}
+          className="border rounded shadow p-4 flex flex-col items-center hover:shadow-lg transition-shadow"
         >
-          Rejoindre la communauté Alumni
-        </button>
-      </div>
+          <img
+            src={alum.photoUrl}
+            alt={alum.name}
+            className="w-24 h-24 rounded-full mb-2 object-cover"
+          />
+          <h3 className="font-semibold text-lg">{alum.name}</h3>
+          <p className="text-gray-600">{alum.program}</p>
+          <button
+            className="mt-2 bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+            onClick={() => window.alert(`Voir le profil de ${alum.name}`)}
+          >
+            Voir profil
+          </button>
+        </div>
+      ))}
     </div>
   );
 };
 
-export default AlumniPage;
+export default AlumniList;
