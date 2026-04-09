@@ -1,39 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import AlumniList from "./AlumniList";
 
-const AlumniPage = () => {
-  const [alumni, setAlumni] = useState([]);
-
-  useEffect(() => {
-    // Simuler fetch depuis API / backend
-    const fetchAlumni = async () => {
-      // Ici tu remplaceras par un appel réel API
-      const data = [
-        { name: "Alice Ndungu", program: "SeedLift", photoUrl: "/images/alice.jpg" },
-        { name: "Jean Mukasa", program: "FikraLaunch", photoUrl: "/images/jean.jpg" },
-        { name: "Fatou Diop", program: "Congo Founder Accelerator", photoUrl: "/images/fatou.jpg" },
-      ];
-      setAlumni(data);
-    };
-    fetchAlumni();
-  }, []);
+const AlumniPage = ({ user, alumni }) => {
+  // Condition : seul l’alumni ayant terminé le programme peut voir la liste
+  const canAccess = user && user.completedProgram;
 
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">Communauté Alumni</h1>
-      <p className="mb-6 text-gray-700">
-        Découvrez nos alumni, connectez-vous avec eux et accédez à leurs profils.
-      </p>
-      <AlumniList alumni={alumni} />
 
-      <div className="mt-6">
-        <button
-          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-          onClick={() => window.alert("Rejoindre la communauté Alumni")}
-        >
-          Rejoindre la communauté Alumni
-        </button>
-      </div>
+      {!canAccess && (
+        <p className="text-red-500 mb-4">
+          Vous devez avoir complété le programme pour rejoindre la communauté et voir les informations des alumni.
+        </p>
+      )}
+
+      {canAccess && (
+        <>
+          <p className="mb-4">
+            Félicitations ! Vous pouvez rejoindre la communauté et consulter les profils des alumni.
+          </p>
+          <AlumniList alumni={alumni} />
+        </>
+      )}
     </div>
   );
 };
