@@ -1,6 +1,14 @@
 import React from "react";
+import AdminReporting from "./AdminReporting"; // <-- nouvel import
 
 const AdminDashboard = () => {
+  const reportingData = {
+    candidatures: [12, 8, 15],
+    programmes: ["SeedLift", "FikraLaunch", "Congo Founder Accelerator"],
+    mentors: [5, 3, 7],
+    investisseurs: [4, 2, 6],
+  };
+
   return (
     <div className="p-6">
       <h1 className="text-3xl font-bold mb-6">Dashboard Administrateur</h1>
@@ -21,8 +29,13 @@ const AdminDashboard = () => {
         </div>
       </div>
 
+      {/* Reporting */}
+      <div className="mt-6">
+        <AdminReporting data={reportingData} />
+      </div>
+
       {/* Navigation modules du dashboard */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
         {[
           "Candidatures",
           "Programmes",
